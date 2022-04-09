@@ -1,0 +1,131 @@
+@import "./variables";
+*{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root{
+    --duration: 10s;
+}
+
+@mixin displayFlex(){
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body{
+    background-color: $third_color;
+    @include displayFlex();
+    height: 100vh;
+    .main_layout{
+        h1{
+            color: $second_color;
+        }
+        @include displayFlex();
+        height: 100%;
+        width: 100%;
+        .player_layout{
+            @include displayFlex();
+            background-color: $primary_color;
+            height: 80%;
+            border-radius: 20px;
+            padding: 30px;
+            width: 350px;
+            .main_picture{
+                @include displayFlex();
+                width: 100%;
+                height: 50%;
+                img{
+                    width: 100%;
+                    height: 90%;
+                }
+            }
+            .name_of_song{
+                height: 20%;
+                width: fit-content;
+                font-weight: bold;
+                font-size: 15px;
+                color: $second_color;
+                @include displayFlex();
+            }
+            .duration_bar{
+                height: 5px;
+                width: 90%;
+                background-color: $empty_bar;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                .progress_bar{
+                    display: none;
+                    border-radius: 10px;
+                    background-color: $second_color;
+                    height: 100%;
+                    animation: fill var(--duration) linear 1;
+                }
+                .paused{
+                    animation-play-state: paused;
+                }
+            }
+            @keyframes fill{
+                0%{
+                    width: 0%;
+                }
+                100%{
+                    width: 100%;
+                }
+            }
+            .controles{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                button{
+                    border: none;
+                    background-color: $primary_color;
+                    cursor: pointer;
+                    img{
+                        height: 50px;
+                    }
+                }
+                .pause_btn{
+                    display: none;
+                }
+                .play_btn{
+                    display: none;
+                }
+                .close_list{
+                    display: none;
+                }
+                .list_btn{
+                    display: none;
+                }
+                .active{
+                    display: block;
+                }
+            }
+            .list_all_songs{
+                @include displayFlex();
+                background-color: $third_color;
+                height: 50%;
+                display: none;
+                padding: 3px;
+                border-radius: 10px;
+                overflow: scroll;
+                margin-top: 20px;
+                p{
+                    color: $second_color;
+                    font-weight: bold;
+                    font-size: 15px;
+                    text-align: center;
+                    &:hover{
+                        cursor: pointer;
+                        background-color: $second_color;
+                        color: $third_color;
+                        transition: 500ms;
+                        border-radius: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
